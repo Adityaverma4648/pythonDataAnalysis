@@ -3,7 +3,9 @@ import pandas as pd;
 import numpy as np;
 import os;
 
-df = pd.read_csv("./Toyota.csv")
+df = pd.read_csv("./Toyota.csv",index_col=0)
+
+
 car_data1 = pd.DataFrame(df)
 # missing = pd.DataFrame(car_data1.row.isnull())
 
@@ -45,19 +47,55 @@ print(car_data1.Age)
 
 # Cleaning the data
 
-car_data2 = pd.DataFrame(df)
+# making a deep copy to work on cleaning process
 
-# print(car_data2.Age.unique());
+car_data2 = car_data1.copy(deep = True)
 
-print(car_data2.MetColor.unique())
+print(car_data2.info())
 
-car_data2 =  car_data2.MetColor.replace(1.,1)
-car_data2 = car_data2.Metcolor.replace(0.,0)
+print(np.unique(car_data2['Age']))
+print("unique in KM")
+print(np.unique(car_data2['KM']))
+print('unoque in Hp')
+print(np.unique(car_data2['HP']))
+print('unique values in col Doors')
+print(np.unique(car_data2['Doors']))
 
-print(car_data2.MetColor.unique())
+#001 cleaned HP , KM
 
-#car_data2 =  car_data2.Age.astype('int64')
-#car_data2 =  car_data2.MetColor.astype('object')
-#car_data2 =  car_data2.Automatic.astype('object')
-#car_data2 =  car_data2.Doors.astype('int64')
+car_data2.replace(('????',"nan"),inplace=True)
+car_data2.replace(('??','nan'),inplace=True)
 
+# dtype 
+
+
+# print to check
+print(np.unique(car_data2['Age']))
+print("unique values in KM : ")
+print(np.unique(car_data2['KM']))
+print('unique  values in Hp : ')
+print(np.unique(car_data2['HP']))
+print('unique values in col Doors : ')
+print(np.unique(car_data2['Doors']))
+print("np.unique values in automatic : " )
+print(np.unique(car_data2['Automatic']))
+print('unique values in Metcolor : ')
+print(np.unique(car_data2['MetColor']))
+
+# 003
+# cleaning door col
+car_data2.replace('five','5',inplace=True)
+car_data2.replace('four','4',inplace=True)
+car_data2.replace('three','3',inplace=True)
+
+
+       # chnaging the dtypes to int64
+car_data2['Doors'] = car_data2['Doors'].astype('int64')       
+
+
+# print after cleaning 
+
+print('after cleaning')
+print(np.unique(car_data2['Doors']))
+print('doors dtype after cleaning')
+print(car_data2['Doors'].dtype)
