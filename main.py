@@ -66,14 +66,17 @@ print(np.unique(car_data2['Doors']))
 car_data2.replace(('????',"nan"),inplace=True)
 car_data2.replace(('??','nan'),inplace=True)
 
-# dtype 
+# dtype  conversion 
+
+car_data2['KM'] =  car_data2['KM'].astype('int64')
 
 
-# print to check
+# print to check unique values
+print('unique values in age')
 print(np.unique(car_data2['Age']))
 print("unique values in KM : ")
 print(np.unique(car_data2['KM']))
-print('unique  values in Hp : ')
+print('unique in Hp : ')
 print(np.unique(car_data2['HP']))
 print('unique values in col Doors : ')
 print(np.unique(car_data2['Doors']))
@@ -81,6 +84,8 @@ print("np.unique values in automatic : " )
 print(np.unique(car_data2['Automatic']))
 print('unique values in Metcolor : ')
 print(np.unique(car_data2['MetColor']))
+
+
 
 # 003
 # cleaning door col
@@ -96,6 +101,10 @@ car_data2['Doors'] = car_data2['Doors'].astype('int64')
 # print after cleaning 
 
 print('after cleaning')
+print('Doors . unique values : ')
 print(np.unique(car_data2['Doors']))
 print('doors dtype after cleaning')
 print(car_data2['Doors'].dtype)
+
+
+print(car_data2.info())
